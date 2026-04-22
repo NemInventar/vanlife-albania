@@ -208,6 +208,7 @@ function cdnPrefixImages(): Plugin {
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   return {
+    base: mode === 'production' ? '/vanlife-albania/' : '/',
     server: {
       host: "::",
       port: 8080,
