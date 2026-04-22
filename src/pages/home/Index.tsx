@@ -23,9 +23,7 @@ const MOUNTAIN_IMG = 'https://images.unsplash.com/photo-1464822759023-fed622ff2c
 const BEACH_IMG = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80';
 const ROAD_IMG = 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80';
 
-// ─── Formspree endpoint ─────────────────────────────────────────────────────
-// Sign up free at formspree.io → create a form → paste your Form ID below
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const WEB3FORMS_KEY = '8fdfd429-c106-48be-aba0-66ea1f55ada2';
 
 // ─── Booking Calendar Component ───────────────────────────────────────────────
 const MONTH_NAMES = [
@@ -150,10 +148,12 @@ function BookingCalendar() {
     setSubmitting(true);
     setSubmitError('');
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `🚐 New Booking Request – ${formatDate(sel.startDate)} to ${formatDate(sel.endDate)}`,
           name: form.name,
           email: form.email,
           phone: form.phone || 'Not provided',
@@ -162,7 +162,6 @@ function BookingCalendar() {
           nights: `${nights} night${nights !== 1 ? 's' : ''}`,
           estimated_total: total,
           message: form.message || 'No additional message',
-          _subject: `🚐 New Booking Request – ${formatDate(sel.startDate)} to ${formatDate(sel.endDate)}`,
         }),
       });
       if (res.ok) {
