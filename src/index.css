@@ -1,0 +1,214 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+==========================================================================
+【AI HANDOVER NOTE】
+1. DESIGN PHILOSOPHY:
+   - Atmosphere-First Adventure Branding: This design system embodies the spirit of freedom, exploration, and premium vanlife experiences. The visual language balances boutique travel aesthetics with direct-response conversion optimization.
+   - Visual Style: Warm, earthy, and inviting with a touch of wanderlust. Think golden hour photography meets modern minimalism. The design uses physicality through subtle shadows and rim-lighting to create depth, while maintaining clean surfaces for optimal readability and conversion.
+   - Why This Style: Landing pages for experiential travel products must evoke emotion first, then provide clear conversion paths. The warm amber/terracotta palette triggers feelings of adventure and sunset drives, while the deep forest greens ground the experience in nature. This isn't a corporate rental—it's a lifestyle transformation.
+
+2. TYPOGRAPHY:
+   - Playfair Display (Display/Headlines): Chosen for its elegant serif character that conveys premium quality and timeless adventure. The high contrast and dramatic letterforms create visual hierarchy and emotional impact in hero sections. Perfect for headlines like 'Your Roadtrip Starts Here'.
+   - Inter (UI/Body): A modern, highly legible sans-serif that ensures clarity across all devices. Its neutral character doesn't compete with the emotional display type, while maintaining professionalism in booking forms, pricing, and CTAs.
+   - JetBrains Mono: Used sparingly for pricing displays ($130/night) and date selections, adding technical precision to the booking experience.
+
+3. COLOR SYSTEM:
+   - Brand Primary (Amber/Golden Hue 40-50): The warm amber (--brand) represents golden hour, adventure, and the Albanian sun. This maps to --primary for main CTAs and --accent for highlights. The hue choice (40-50°) sits between pure yellow and orange, evoking warmth without aggression.
+   - Secondary (Forest Green Hue 140-160): Deep forest green provides natural grounding and complements the warm tones. Used for secondary actions and trust elements.
+   - Terracotta/Earth (Hue 15-25): A reddish-orange accent for urgency messaging ('Limited availability') and special callouts.
+   - Semantic Colors: Success uses natural green (booking confirmations), Warning uses amber (availability alerts), Destructive uses terracotta (cancellation/errors).
+   - Light Mode: Cream/off-white backgrounds (oklch(0.98 0.01 50)) create a warm, inviting canvas. Dark text ensures WCAG AAA compliance.
+   - Dark Mode: Deep charcoal with warm undertones, maintaining the earthy feel while providing excellent contrast for evening browsing.
+
+4. USAGE GUIDE:
+   - Layout: Full-width hero with lifestyle imagery, followed by centered content containers (max-width: 1200px) for readability. Sticky booking CTA bar on mobile.
+   - Special Effects: Use backdrop-blur on overlays (hero text over images), subtle box-shadows for card elevation, and warm gradient overlays on imagery (amber to transparent) to maintain brand consistency.
+   - Conversion Elements: Primary CTAs use --primary (amber) with high contrast text. Secondary actions use --secondary (forest green). Urgency elements use --destructive (terracotta).
+   - Booking Section: Airbnb-style calendar uses --card with --border, selected dates highlight with --primary, hover states use --accent.
+   - Trust Indicators: Use --muted backgrounds with --muted-foreground text for subtle social proof sections.
+   - Mobile: Ensure touch targets are minimum 44px, sticky elements use backdrop-blur for legibility over content.
+==========================================================================
+*/
+
+:root {
+  /* Typography */
+  --font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: JetBrains Mono, 'Courier New', monospace;
+  
+  /* Radius */
+  --radius: 0.75rem;
+
+  /* Core UI Tokens */
+  --background: oklch(0.98 0.01 50);
+  --foreground: oklch(0.15 0.02 30);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 30);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 30);
+  --primary: oklch(0.62 0.18 45);
+  --primary-foreground: oklch(0.98 0.01 50);
+  --secondary: oklch(0.35 0.12 155);
+  --secondary-foreground: oklch(0.98 0.01 50);
+  --muted: oklch(0.94 0.01 50);
+  --muted-foreground: oklch(0.48 0.02 30);
+  --accent: oklch(0.72 0.16 42);
+  --accent-foreground: oklch(0.15 0.02 30);
+  --destructive: oklch(0.58 0.20 22);
+  --destructive-foreground: oklch(0.98 0.01 50);
+  --border: oklch(0.88 0.01 50);
+  --input: oklch(0.88 0.01 50);
+  --ring: oklch(0.62 0.18 45);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.62 0.18 45);
+  --chart-2: oklch(0.35 0.12 155);
+  --chart-3: oklch(0.58 0.20 22);
+  --chart-4: oklch(0.72 0.16 42);
+  --chart-5: oklch(0.45 0.10 200);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.98 0.01 50);
+  --sidebar-foreground: oklch(0.15 0.02 30);
+  --sidebar-primary: oklch(0.62 0.18 45);
+  --sidebar-primary-foreground: oklch(0.98 0.01 50);
+  --sidebar-accent: oklch(0.94 0.01 50);
+  --sidebar-accent-foreground: oklch(0.15 0.02 30);
+  --sidebar-border: oklch(0.88 0.01 50);
+  --sidebar-ring: oklch(0.62 0.18 45);
+}
+
+.dark {
+  --background: oklch(0.14 0.02 30);
+  --foreground: oklch(0.95 0.01 50);
+  --card: oklch(0.18 0.02 30);
+  --card-foreground: oklch(0.95 0.01 50);
+  --popover: oklch(0.18 0.02 30);
+  --popover-foreground: oklch(0.95 0.01 50);
+  --primary: oklch(0.68 0.20 45);
+  --primary-foreground: oklch(0.14 0.02 30);
+  --secondary: oklch(0.42 0.14 155);
+  --secondary-foreground: oklch(0.95 0.01 50);
+  --muted: oklch(0.22 0.02 30);
+  --muted-foreground: oklch(0.65 0.01 50);
+  --accent: oklch(0.75 0.18 42);
+  --accent-foreground: oklch(0.14 0.02 30);
+  --destructive: oklch(0.62 0.22 22);
+  --destructive-foreground: oklch(0.95 0.01 50);
+  --border: oklch(0.28 0.02 30);
+  --input: oklch(0.28 0.02 30);
+  --ring: oklch(0.68 0.20 45);
+  
+  /* Chart Tokens */
+  --chart-1: oklch(0.68 0.20 45);
+  --chart-2: oklch(0.42 0.14 155);
+  --chart-3: oklch(0.62 0.22 22);
+  --chart-4: oklch(0.75 0.18 42);
+  --chart-5: oklch(0.52 0.12 200);
+  
+  /* Sidebar Tokens */
+  --sidebar: oklch(0.14 0.02 30);
+  --sidebar-foreground: oklch(0.95 0.01 50);
+  --sidebar-primary: oklch(0.68 0.20 45);
+  --sidebar-primary-foreground: oklch(0.14 0.02 30);
+  --sidebar-accent: oklch(0.22 0.02 30);
+  --sidebar-accent-foreground: oklch(0.95 0.01 50);
+  --sidebar-border: oklch(0.28 0.02 30);
+  --sidebar-ring: oklch(0.68 0.20 45);
+}
+
+@theme inline {
+  /* Font mapping */
+  --font-heading: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Shadcn Core Mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts Mapping */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar Mapping */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* Radius */
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth antialiased;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans min-h-screen;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  code, pre {
+    @apply font-mono;
+  }
+
+  ::selection {
+    @apply bg-primary/20 text-primary;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
+  }
+}
